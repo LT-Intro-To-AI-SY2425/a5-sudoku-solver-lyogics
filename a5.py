@@ -120,7 +120,7 @@ class Board:
                     row = i
                     column = j
                     # print("Changed value")
-                     #print(row, column, mini)
+                    # print(row, column, mini)
         return (row, column)
 
     def failure_test(self) -> bool:
@@ -328,11 +328,13 @@ if __name__ == "__main__":
 
     # ##Now, let's write some quick tests to check update!
     # #Create a sudoku board.
-    # g = Board()
+    g = Board()
     # #Place the 28 assignments in first_moves on the board.
-    # for trip in first_moves:
-    #     g.update(trip[0],trip[1],trip[2])
-    # g.print_pretty()
+    for trip in first_moves:
+        g.update(trip[0],trip[1],trip[2])
+    g.print_pretty()
+    print(g)
+    print(g.find_most_constrained_cell())
     # #From the above print statement, you can see which numbers
     # #  have been assigned to the board, and then create test
     # #  cases by looking at the board and listing what values are
@@ -363,4 +365,4 @@ if __name__ == "__main__":
     # print("<<<<<<<<<<<<<< Testing BFS on Second Game >>>>>>>>>>>>>>")
 
     # test_dfs_or_bfs(False, second_moves)
-    pass
+    
