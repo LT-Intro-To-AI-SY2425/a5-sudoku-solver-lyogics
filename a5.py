@@ -162,14 +162,16 @@ class Board:
         self.num_nums_placed += 1
 
         for i in range(self.size):
-            # remove the assignment from the row
             remove_if_exists(self.rows[row][i], assignment)
-            # remove the assignment from the column
             remove_if_exists(self.rows[i][column], assignment)
+            # 0, 5
+            # 1, 5
+            # 2, 5
 
-        print(self.subgrid_coordinates(row, column))
         for i, j in self.subgrid_coordinates(row, column):
             remove_if_exists(self.rows[i][j], assignment)
+
+
 
 def DFS(state: Board) -> Board:
     """Performs a depth first search. Takes a Board and attempts to assign values to
@@ -183,7 +185,38 @@ def DFS(state: Board) -> Board:
     Returns:
         either None in the case of invalid input or a solved board
     """
-    pass
+    s = Stack([state])
+
+    while not s.is_empty():
+        print(s)
+        b: Board = s.pop()
+        if b.goal_test():
+            return b
+        mcc = b.find_most_constrained_cell()
+        row, col = mcc
+        print(row, col)
+        for val in b.rows[row][col]:
+            print(val)
+            cpy = copy.deepcopy(b)
+            cpy.update(row, col, val)
+            # cpy.printpretty()
+            s.push(cpy)
+
+    return None
+    
+    # print(s)
+    # s.push(state)
+    # print(s)
+    # b: Board = s.pop()
+    # mcc = b.find_most_constrained_cell()
+    # row = mcc[0]
+    # col = mcc[1]
+    # val = b.rows[row][col][0]
+    
+    # print(row, col, val)
+    # b.update(row, col, val)
+    # b.print_pretty()
+    # print(s)
 
 
 def BFS(state: Board) -> Board:
@@ -198,7 +231,24 @@ def BFS(state: Board) -> Board:
     Returns:
         either None in the case of invalid input or a solved board
     """
-    pass
+    q = Queue([state])
+
+    while not q.is_empty():
+        print(q)
+        b: Board = q.pop()
+        if b.goal_test():
+            return b
+        mcc = b.find_most_constrained_cell()
+        row, col = mcc
+        print(row, col)
+        for val in b.rows[row][col]:
+            print(val)
+            cpy = copy.deepcopy(b)
+            cpy.update(row, col, val)
+            # cpy.print_pretty()
+            q.push(cpy)
+    
+    return None
 
 
 
@@ -357,9 +407,9 @@ if __name__ == "__main__":
     assert g.goal_test() == True, "goal test test"
     print("All part 2 tests passed! Testing DFS and BFS next:")
 
-    # print("<<<<<<<<<<<<<< Testing DFS on First Game >>>>>>>>>>>>>>")
+    #print("<<<<<<<<<<<<<< Testing DFS on First Game >>>>>>>>>>>>>>")
 
-    # test_dfs_or_bfs(True, first_moves)
+    #test_dfs_or_bfs(True, first_moves)
 
     # print("<<<<<<<<<<<<<< Testing DFS on Second Game >>>>>>>>>>>>>>")
 
@@ -369,7 +419,7 @@ if __name__ == "__main__":
 
     # test_dfs_or_bfs(False, first_moves)
 
-    # print("<<<<<<<<<<<<<< Testing BFS on Second Game >>>>>>>>>>>>>>")
+    print("<<<<<<<<<<<<<< Testing BFS on Second Game >>>>>>>>>>>>>>")
 
-    # test_dfs_or_bfs(False, second_moves)
+    test_dfs_or_bfs(False, second_moves)
     
