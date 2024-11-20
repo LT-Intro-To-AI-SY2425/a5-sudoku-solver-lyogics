@@ -39,7 +39,7 @@ def is_valid(board: Board, row_input: int, col_input: int, val_input: int) -> bo
 
 
 def play_sudoku(b: Board) -> None:
-    """Uses your class to play TicTacToe"""
+    """Uses your class to play Sudoku"""
 
     def star_surround(val: Any) -> str:
         return f"\n************ {val} ************\n"
