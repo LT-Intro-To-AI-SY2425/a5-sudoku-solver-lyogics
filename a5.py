@@ -188,15 +188,15 @@ def DFS(state: Board) -> Board:
     s = Stack([state])
 
     while not s.is_empty():
-        print(s)
+       # print(s)
         b: Board = s.pop()
         if b.goal_test():
             return b
         mcc = b.find_most_constrained_cell()
         row, col = mcc
-        print(row, col)
+        # print(row, col)
         for val in b.rows[row][col]:
-            print(val)
+           # print(val)
             cpy = copy.deepcopy(b)
             cpy.update(row, col, val)
             # cpy.printpretty()
@@ -234,15 +234,15 @@ def BFS(state: Board) -> Board:
     q = Queue([state])
 
     while not q.is_empty():
-        print(q)
+        #print(q)
         b: Board = q.pop()
         if b.goal_test():
             return b
         mcc = b.find_most_constrained_cell()
         row, col = mcc
-        print(row, col)
+        #print(row, col)
         for val in b.rows[row][col]:
-            print(val)
+            #print(val)
             cpy = copy.deepcopy(b)
             cpy.update(row, col, val)
             # cpy.print_pretty()
@@ -389,9 +389,9 @@ if __name__ == "__main__":
     #Place the 28 assignments in first_moves on the board.
     for trip in first_moves:
         g.update(trip[0],trip[1],trip[2])
-    g.print_pretty()
-    print(g)
-    print(g.find_most_constrained_cell())
+    #g.print_pretty()
+    #print(g)
+    #print(g.find_most_constrained_cell())
     #From the above print statement, you can see which numbers
     #  have been assigned to the board, and then create test
     #  cases by looking at the board and listing what values are
@@ -407,17 +407,17 @@ if __name__ == "__main__":
     assert g.goal_test() == True, "goal test test"
     print("All part 2 tests passed! Testing DFS and BFS next:")
 
-    #print("<<<<<<<<<<<<<< Testing DFS on First Game >>>>>>>>>>>>>>")
+    print("<<<<<<<<<<<<<< Testing DFS on First Game >>>>>>>>>>>>>>")
 
-    #test_dfs_or_bfs(True, first_moves)
+    test_dfs_or_bfs(True, first_moves)
 
-    # print("<<<<<<<<<<<<<< Testing DFS on Second Game >>>>>>>>>>>>>>")
+    print("<<<<<<<<<<<<<< Testing DFS on Second Game >>>>>>>>>>>>>>")
 
-    # test_dfs_or_bfs(True, second_moves)
+    test_dfs_or_bfs(True, second_moves)
 
-    # print("<<<<<<<<<<<<<< Testing BFS on First Game >>>>>>>>>>>>>>")
+    print("<<<<<<<<<<<<<< Testing BFS on First Game >>>>>>>>>>>>>>")
 
-    # test_dfs_or_bfs(False, first_moves)
+    test_dfs_or_bfs(False, first_moves)
 
     print("<<<<<<<<<<<<<< Testing BFS on Second Game >>>>>>>>>>>>>>")
 
